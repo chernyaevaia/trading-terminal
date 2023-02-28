@@ -1,8 +1,17 @@
-import styles from './BidList.module.css'
+import styles from "./BidList.module.css";
 
+export interface BidListProps {
+  id?: number,
+  creationTime?: string,
+  changedTime?: string,
+  status?: string,
+  side?: string,
+  price?: string,
+  amount?: string,
+  instrument?: string,
+}
 
-
-export function BidList() {
+export function BidList(bid: BidListProps) {
   return (
     <table className={styles.table}>
       <thead>
@@ -18,16 +27,16 @@ export function BidList() {
         </tr>
       </thead>
       <tbody>
-            <tr>
-              <td>1</td>
-              <td>22.02.2023</td>
-              <td>22.02.2023</td>
-              <td>Active</td>
-              <td>Buy</td>
-              <td>33.89</td>
-              <td>10 000</td>
-              <td>USD/RUB</td>
-            </tr>
+        <tr>
+          <td>1 {bid.id}</td>
+          <td>22.02.2023 {bid.creationTime}</td>
+          <td>22.02.2023 {bid.changedTime}</td>
+          <td>Active {bid.status}</td>
+          <td>Buy {bid.side}</td>
+          <td>33.89 {bid.price}</td>
+          <td>10 000 {bid.amount}</td>
+          <td>USD/RUB {bid.instrument}</td>
+        </tr>
       </tbody>
     </table>
   );
