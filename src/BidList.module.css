@@ -1,0 +1,11 @@
+.table {
+    margin: auto;
+    margin-top: 50px;
+}
+
+
+.tableHeader > th {
+  padding: 8px 16px;
+  background: rgb(225, 240, 254);
+  font-weight: bold;
+}

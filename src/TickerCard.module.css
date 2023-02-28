@@ -1,0 +1,63 @@
+.tickercard {
+  width: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 1px 10px 1px #afafaf;
+  border-radius: 10px;
+  padding: 16px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.instruments {
+  height: 36px;
+  width: 190px;
+  border-radius: 6px;
+  border: 1px solid rgb(204, 204, 204);
+  margin-bottom: 20px;
+}
+
+.input {
+  height: 36px;
+  width: 166px;
+  padding: 0px 12px 0px 12px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.priceBlock {
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.price {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.btn1 {
+  background-color: rgb(254, 76, 76);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.btn2 {
+  background-color: rgb(66, 188, 66);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.btn1:hover,
+.btn2:hover {
+  cursor: pointer;
+  color: white;
+}
