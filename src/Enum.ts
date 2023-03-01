@@ -12,8 +12,8 @@ export enum ServerMessageType {
 }
 
 export enum OrderSide {
-  buy = 1,
-  sell,
+  buy = "Buy",
+  sell = "Sell"
 }
 
 export enum OrderStatus {

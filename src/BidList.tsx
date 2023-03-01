@@ -25,10 +25,10 @@ export function BidList(bid: BidListProps) {
           return (
             <tr>
               <td>{index + 1}</td>
-              <td>22.02.2023</td>
-              <td>22.02.2023</td>
+              <td>{bid.creationTime}</td>
+              <td>{bid.changeTime}</td>
               <td>Active</td>
-              <td>Buy</td>
+              <td>{bid.side}</td>
               <td>33.89</td>
               <td>{bid.amount}</td>
               <td>{bid.instrument}</td>

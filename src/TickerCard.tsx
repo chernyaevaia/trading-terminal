@@ -1,24 +1,26 @@
 import { FormEvent, useState } from "react";
 import { Instrument } from "./Enum";
+import { OrderSide } from "./Enum";
 import styles from "./TickerCard.module.css";
 
 export interface TickerCardProps {
   options: typeof Instrument;
-  addBid?: any
+  addBid?: any;
 }
 
 export function AddBidForm(ticker: TickerCardProps) {
   const [tickerAmount, setTickerAmount] = useState<string>("");
+  const [orderSide, setOrderSide] = useState<string>("");
   const [selectedInstrument, setSelectedInstrument] = useState<string>(
     Instrument[0].value
   );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    ticker.addBid(tickerAmount, selectedInstrument);
-    setTickerAmount("")
-    setSelectedInstrument(Instrument[0].value)
-}
+    ticker.addBid(tickerAmount, selectedInstrument, orderSide);
+    setTickerAmount("");
+    setSelectedInstrument(Instrument[0].value);
+  };
 
   return (
     <form className={styles.tickercard} onSubmit={handleSubmit}>
@@ -46,13 +48,23 @@ export function AddBidForm(ticker: TickerCardProps) {
       />
       <div className={styles.priceBlock}>
         <div className={styles.price}>8.59339</div>
-        <button type="submit" className={styles.btn1}>
+        <button
+          onClick={(e) => setOrderSide(OrderSide.sell)}
+          value={orderSide}
+          type="submit"
+          className={styles.btn1}
+        >
           sell
         </button>
       </div>
       <div className={styles.priceBlock}>
         <div className={styles.price}>8.599</div>
-        <button type="submit" className={styles.btn2}>
+        <button
+          type="submit"
+          onClick={(e) => setOrderSide(OrderSide.buy)}
+          value={orderSide}
+          className={styles.btn2}
+        >
           buy
         </button>
       </div>
