@@ -1,25 +1,27 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import { BidList } from "./BidList";
-import { TickerCard } from "./TickerCard";
+import { AddBidForm } from "./TickerCard";
 import { Instrument } from "./Enum";
 
 function App() {
-  const [tickerAmount, setTickerAmount] = useState<string>("");
-  const [selectedOption, setSelectedOption] = useState<string>(
-    Instrument[0].value
-  );
+
+  const [bidsList, setBidsList] = useState<[]>([]);
+
+  const addBid = (tickerAmount: string, selectedInstrument: string) => {
+    let copy: any = [...bidsList];
+    copy = [...copy, {amount: tickerAmount, instrument: selectedInstrument}];
+    setBidsList(copy);
+  }
+
 
   return (
     <>
-      <TickerCard
+      <AddBidForm
         options={Instrument}
-        selectedOption={selectedOption}
-        tickerAmount={tickerAmount}
-        onChangeOption={(e) => setSelectedOption(e.target.value)}
-        onChange={(e) => setTickerAmount(e.target.value)}
+        addBid={addBid}
       />
-      <BidList amount={tickerAmount} />
+      <BidList bids={bidsList}/>
     </>
   );
 }
