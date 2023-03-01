@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
-import { Instrument } from "./Enum";
-import { OrderSide } from "./Enum";
+import { Instrument, OrderSide, OrderStatus } from "./Enum";
 import styles from "./TickerCard.module.css";
 
 export interface TickerCardProps {
@@ -9,16 +8,29 @@ export interface TickerCardProps {
 }
 
 export function AddBidForm(ticker: TickerCardProps) {
-  const [tickerAmount, setTickerAmount] = useState<string>("");
-  const [orderSide, setOrderSide] = useState<string>("");
+  const [tickerAmount, setTickerAmount] = useState<number>(0);
+  const [orderSide, setOrderSide] = useState<string>();
+  const [sellPrice, setSellPrice] = useState<string>(
+    (Math.random() * 3 + 70).toFixed(4)
+  );
+  const [buyPrice, setBuyPrice] = useState<string>(
+    (Math.random() * 3 + 70).toFixed(4)
+  );
+  const [status, setStatus] = useState<string>(OrderStatus.active);
   const [selectedInstrument, setSelectedInstrument] = useState<string>(
     Instrument[0].value
   );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    ticker.addBid(tickerAmount, selectedInstrument, orderSide);
-    setTickerAmount("");
+    ticker.addBid(
+      tickerAmount,
+      selectedInstrument,
+      orderSide,
+      status,
+      orderSide === OrderSide.buy ? buyPrice : sellPrice
+    );
+    setTickerAmount(0);
     setSelectedInstrument(Instrument[0].value);
   };
 
@@ -28,7 +40,11 @@ export function AddBidForm(ticker: TickerCardProps) {
         className={styles.instruments}
         name="instruments"
         id="instruments"
-        onChange={(e) => setSelectedInstrument(e.target.value)}
+        onChange={(e) => {
+          setSellPrice((Math.random() * 3 + 70).toFixed(4));
+          setBuyPrice((Math.random() * 3 + 70).toFixed(4));
+          setSelectedInstrument(e.target.value);
+        }}
       >
         {ticker.options.map((option) => {
           return (
@@ -42,12 +58,12 @@ export function AddBidForm(ticker: TickerCardProps) {
       </select>
       <input
         value={tickerAmount}
-        onChange={(e) => setTickerAmount(e.target.value)}
+        onChange={(e) => setTickerAmount(+e.target.value)}
         className={styles.input}
-        type="text"
+        type="number"
       />
       <div className={styles.priceBlock}>
-        <div className={styles.price}>8.59339</div>
+        <div className={styles.price}>{sellPrice}</div>
         <button
           onClick={(e) => setOrderSide(OrderSide.sell)}
           value={orderSide}
@@ -58,7 +74,7 @@ export function AddBidForm(ticker: TickerCardProps) {
         </button>
       </div>
       <div className={styles.priceBlock}>
-        <div className={styles.price}>8.599</div>
+        <div className={styles.price}>{buyPrice}</div>
         <button
           type="submit"
           onClick={(e) => setOrderSide(OrderSide.buy)}
