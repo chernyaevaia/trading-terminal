@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import { BidList } from "./BidList";
 import { AddBidForm } from "./TickerCard";
 import { Bid, Instrument } from "./Enum";
