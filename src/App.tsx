@@ -6,7 +6,7 @@ import { Bid, Instrument } from "./Enum";
 import moment from "moment";
 
 function App() {
-  const [bidsList, setBidsList] = useState<[]>([]);
+  const [bidsList, setBidsList] = useState<Bid[]>([]);
 
   const addBid = (
     tickerAmount: number,
@@ -15,7 +15,7 @@ function App() {
     status: string,
     price: string
   ) => {
-    let copy: any = [...bidsList];
+    let copy: Bid[] = [...bidsList];
     copy = [
       ...copy,
       {
@@ -33,14 +33,14 @@ function App() {
   };
 
   const handleDelete = (index: number) => {
-    const array: any = bidsList.filter((item, i) => index !== i);
+    const array = bidsList?.filter((item, i) => index !== i);
     setBidsList(array);
   };
 
   return (
     <>
       <AddBidForm options={Instrument} addBid={addBid} />
-      <BidList bids={bidsList} handleDelete={handleDelete}/>
+      <BidList bids={bidsList} handleDelete={handleDelete} />
     </>
   );
 }

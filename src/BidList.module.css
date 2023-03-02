@@ -1,11 +1,21 @@
 .table {
-    margin: auto;
-    margin-top: 50px;
+  margin: auto;
+  margin-top: 50px;
 }
-
 
 .tableHeader > th {
   padding: 8px 16px;
   background: rgb(225, 240, 254);
   font-weight: bold;
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
 }

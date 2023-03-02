@@ -4,12 +4,18 @@ import styles from "./TickerCard.module.css";
 
 export interface TickerCardProps {
   options: typeof Instrument;
-  addBid?: any;
+  addBid: (
+    tickerAmount: number,
+    selectedInstrument: string,
+    orderSide: string,
+    status: string,
+    price: string
+  ) => void;
 }
 
 export function AddBidForm(ticker: TickerCardProps) {
   const [tickerAmount, setTickerAmount] = useState<number>(0);
-  const [orderSide, setOrderSide] = useState<string>();
+  const [orderSide, setOrderSide] = useState<string>("");
   const [sellPrice, setSellPrice] = useState<string>(
     (Math.random() * 3 + 70).toFixed(4)
   );
